@@ -7,7 +7,7 @@
     <id>http://www.zotero.org/styles/hlces-hamburg</id>
     <link href="http://www.zotero.org/styles/hlces-hamburg" rel="self"/>
     <link rel="template" href="http://www1.uni-hamburg.de/COMST/bulletin.html"/>
-    <link rel="documentation" href="http://www1.uni-hamburg.de/COMST/bulletin.html"/>
+    <link rel="documentation" href="https://github.com/eu-genia/citation"/>
     <author>
       <name>Eugenia Sokolinski</name>
       <email>eugenia.sokolinski@uni-hamburg.de</email>
