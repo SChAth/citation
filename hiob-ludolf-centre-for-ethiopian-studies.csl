@@ -13,7 +13,7 @@
     </author>
     <category citation-format="author-date"/>
     <category field="humanities"/>
-    <updated>2016-03-24T09:49:41+00:00</updated>
+    <updated>2016-03-24T11:29:38+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en-US">
@@ -27,6 +27,10 @@
       <term name="ordinal-12">ᵗʰ</term>
       <term name="ordinal-13">ᵗʰ</term>
       <term name="available at">see</term>
+      <term name="editor" form="short">
+   		<single>ed.</single>
+   		<multiple>eds</multiple>
+	</term>
     </terms>
   </locale>
   <macro name="container-contributors">
@@ -44,7 +48,7 @@
       <if type="chapter paper-conference" match="none">
         <group delimiter=", ">
           <names variable="editor" delimiter=", " prefix=", ">
-            <label form="short" suffix=" "/>
+            <label form="short" plural="never" suffix=" "/>
             <name and="text" initialize-with="." sort-separator=""/>
           </names>
           <names variable="translator">
@@ -102,7 +106,6 @@
               <date-part name="month" form="long" prefix=" "/>
             </date>
             <group prefix=" (" suffix=")">
-              <text term=" " suffix=" "/>
               <text variable="URL" prefix="&lt;" suffix="&gt;"/>
               <choose>
                 <if variable="accessed">
@@ -139,10 +142,14 @@
   </macro>
   <macro name="publisher">
     <choose>
-      <if type="report thesis" match="any">
-        <group delimiter=": " prefix="(" suffix=")">
-          <text variable="publisher-place"/>
-          <text variable="publisher"/>
+      <if type="thesis" match="any">
+        <group delimiter=", " prefix="(" suffix=")">
+          <text value="Diss."/>
+          <group delimiter=": ">
+            <text variable="publisher-place"/>
+            <text variable="publisher"/>
+          </group>
+          <date date-parts="year" form="text" variable="issued"/>
         </group>
       </if>
       <else>
@@ -152,7 +159,7 @@
           </if>
         </choose>
         <choose>
-          <if type="speech paper-conference" match="any">
+          <if type="speech" match="any">
             <group delimiter=": ">
               <text variable="publisher-place"/>
               <text variable="publisher"/>
