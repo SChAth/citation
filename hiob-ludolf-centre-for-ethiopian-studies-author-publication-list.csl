@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-GB">
+<!-- This style was edited with the Visual CSL Editor (http://editor.citationstyles.org/visualEditor/) -->
   <info>
-    <title>Hiob Ludolf Centre for Ethiopian Studies</title>
-    <title-short>HLCES (Hamburg)</title-short>
-    <id>http://www.zotero.org/styles/hiob-ludolf-centre-for-ethiopian-studies</id>
-    <link href="http://www.zotero.org/styles/hiob-ludolf-centre-for-ethiopian-studies" rel="self"/>
+    <title>Hiob Ludolf Centre for Ethiopian Studies Author Publication List</title>
+    <id>http://www.zotero.org/styles/hiob-ludolf-centre-for-ethiopian-studies-author-publication-list</id>
+    <link href="http://www.zotero.org/styles/hiob-ludolf-centre-for-ethiopian-studies-author-publication-list" rel="self"/>
     <link href="http://www1.uni-hamburg.de/COMST/bulletin.html" rel="documentation"/>
     <author>
       <name>Eugenia Sokolinski</name>
@@ -12,7 +12,7 @@
     </author>
     <category citation-format="author-date"/>
     <category field="humanities"/>
-    <updated>2016-03-30T21:27:04+00:00</updated>
+    <updated>2016-03-30T19:03:01+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en-GB">
@@ -26,6 +26,7 @@
       <term name="ordinal-12">th</term>
       <term name="ordinal-13">th</term>
       <term name="available at">see</term>
+      <term name="presented at">presented at</term>
       <term name="editor" form="short">
         <single>ed.</single>
         <multiple>eds</multiple>
@@ -35,7 +36,7 @@
   <macro name="container-contributors">
     <choose>
       <if type="chapter paper-conference" match="any">
-        <names variable="editor translator" delimiter=", " prefix=" ">
+        <names variable="editor translator" delimiter=", ">
           <name and="text" initialize-with="."/>
           <label form="short" prefix=", " suffix=","/>
         </names>
@@ -59,7 +60,7 @@
     </choose>
   </macro>
   <macro name="author">
-    <names variable="author">
+    <names variable="author" suffix=",">
       <name and="text" delimiter-precedes-et-al="never" et-al-subsequent-min="3" initialize-with="." name-as-sort-order="first"/>
       <label form="short" text-case="lowercase" prefix=", " suffix=","/>
       <substitute>
@@ -88,25 +89,28 @@
   </macro>
   <macro name="access">
     <choose>
-      <if type="webpage">
-        <choose>
-          <if match="any" variable="URL">
-            <group prefix=" (" suffix=")">
-              <text term="available at" suffix=" "/>
-              <text variable="URL" prefix="&lt;" suffix="&gt;"/>
-              <choose>
-                <if variable="accessed">
-                  <text term="accessed" prefix=", "/>
-                  <date variable="accessed">
-                    <date-part name="day" form="numeric" prefix=" "/>
-                    <date-part name="month" form="long" prefix=" "/>
-                    <date-part name="year" prefix=" "/>
-                  </date>
-                </if>
-              </choose>
-            </group>
-          </if>
-        </choose>
+      <if match="any" variable="URL">
+        <group prefix=" (" suffix=")">
+          <text term="available at" suffix=" "/>
+          <text variable="URL" prefix="&lt;" suffix="&gt;"/>
+          <choose>
+            <if variable="accessed">
+              <text term="accessed" prefix=", "/>
+              <date variable="accessed">
+                <date-part name="day" form="numeric" prefix=" "/>
+                <date-part name="month" form="long" prefix=" "/>
+                <date-part name="year" prefix=" "/>
+              </date>
+            </if>
+          </choose>
+        </group>
+      </if>
+    </choose>
+    <choose>
+      <if variable="DOI">
+        <group prefix=" (" suffix=")">
+          <text variable="DOI" prefix="DOI: "/>
+        </group>
       </if>
     </choose>
   </macro>
@@ -177,12 +181,12 @@
       <if variable="event">
         <choose>
           <if variable="genre" match="none">
-            <text term="presented at" text-case="lowercase" suffix=" "/>
-            <text variable="event" font-style="italic"/>
+            <text term="presented at" form="short" text-case="lowercase" suffix=" "/>
+            <text variable="event" suffix=" "/>
           </if>
           <else>
             <group delimiter=" ">
-              <text variable="genre"/>
+              <text variable="genre" text-case="capitalize-first"/>
               <text term="presented at"/>
               <text variable="event"/>
             </group>
@@ -268,8 +272,7 @@
   </macro>
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" disambiguate-add-names="true" disambiguate-add-givenname="true" givenname-disambiguation-rule="by-cite" collapse="year">
     <sort>
-      <key macro="author"/>
-      <key macro="issued-year"/>
+      <key macro="issued-year" sort="descending"/>
     </sort>
     <layout delimiter="; ">
       <group delimiter=", ">
@@ -283,13 +286,12 @@
   </citation>
   <bibliography entry-spacing="1" line-spacing="1" hanging-indent="true">
     <sort>
-      <key macro="author"/>
-      <key macro="issued-year" sort="ascending"/>
+      <key macro="issued-year" sort="descending"/>
     </sort>
     <layout>
       <group suffix=".">
+        <date form="text" variable="issued" suffix=" — "/>
         <text macro="author"/>
-        <text macro="issued" prefix=" " suffix="."/>
         <group prefix=" ">
           <group delimiter=" ">
             <text macro="title"/>
@@ -318,10 +320,10 @@
           </group>
           <text macro="locators" prefix=" "/>
         </group>
-        <group delimiter=", " prefix=" ">
+        <group prefix=" ">
           <text macro="event"/>
+          <text macro="publisher"/>
         </group>
-        <text macro="publisher" prefix=" "/>
         <group delimiter=" " prefix=", ">
           <text variable="page"/>
         </group>
